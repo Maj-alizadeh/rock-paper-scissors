@@ -1,5 +1,5 @@
 body {
-    background: url(/images/background.jpg) no-repeat ;
+    background: url(./images/background.jpg) no-repeat ;
     background-size:cover;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
@@ -44,11 +44,11 @@ button {
 
 
 #rock {
-    background-image: url(/images/rock.jpg);
+    background-image: url(./images/rock.jpg);
 }
 #paper {
-    background-image: url(/images/paper.jpg);
+    background-image: url(./images/paper.jpg);
 }
 #scissors {
-    background-image: url(/images/scissors.jpg);
+    background-image: url(./images/scissors.jpg);
 }
