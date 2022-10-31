@@ -1,5 +1,12 @@
 let playerScore = 0;
 let computerScore = 0;
+const playerChoiceImage = document.querySelector ('#player-choice-image');
+const computerChoiceImage = document.querySelector('#computer-choice-image');
+const result = document.querySelector('#result');
+const score = document.querySelector('#score');
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => button.addEventListener('click', game))
+
 
 //get computer choice
 function getComputerChoice() {
@@ -16,11 +23,6 @@ function getComputerChoice() {
             break;
     }
     return choice;
-}
-//get player's selection
-function playerSelection() {
-    let choice= (prompt('choose Paper, Rock, Scissors'));
-    return choice.toLowerCase();
 }
 
 //compare player's choice and computer choice
@@ -59,19 +61,29 @@ function playRound(playerSelection, computerSelection) {
             else if (computerSelection ==='scissors') return('Draw');
     }
 
-}
-function game() {
-    for (let i =0; i<5; i++) {
-        const playerChoise = playerSelection();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerChoise,computerSelection));
-    }
-    if (playerScore > computerScore) {
-        console.log('you Win','your score:',playerScore,'computer score:',computerScore)
-    }
-    else console.log('you Lose','your score:',playerScore,'computer score:',computerScore) 
     
+
 }
-game();
+
+
+function game(e) {
+    const playerChoise = e.target.id;
+    playerChoiceImage.src = `/images/${e.target.id}.jpg`
+    const computerSelection = getComputerChoice();
+    computerChoiceImage.src = `/images/${computerSelection}.jpg`
+    result.textContent = playRound(playerChoise,computerSelection) ;
+    score.textContent = `Your Score: ${playerScore} Computer Score: ${computerScore}`;
+    console.log(score.textContent)
+    console.log(playerScore,computerScore);
+    if (playerScore === 5 || computerScore === 5) showResult();
+}
+
+function showResult() {
+    if (playerScore > computerScore) result.textContent= 'You Win'; else result.textContent = 'You Lose'
+    result.textContent += ' your score: '+playerScore+' computer score: '+computerScore;
+    score.textContent ='Game has ended!'
+    playerScore=0;
+    computerScore=0;
+}
 
 
